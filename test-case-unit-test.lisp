@@ -1,4 +1,5 @@
 (test-case 'test-case-unit-test
            '((test test-assert-equal
-                   ((assert-equal t t)
-                    (assert-equal nil nil)))))
+                   ((assert-equal '1 '1)
+                    (assert-equal 'x 'x)
+                    (assert-equal '(a) '(a))))))
