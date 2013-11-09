@@ -3,9 +3,9 @@
 (load "unit-test.lisp")
 
 (defun run-tests (tests)
-  (cond ((not (null tests)) (load (car tests))
-                            (if (not (null (cdr tests))) (newline))
-                            (run-tests (cdr tests)))))
+  (cond (tests (load (car tests))
+               (if (cdr tests) (newline))
+               (run-tests (cdr tests)))))
 
 (run-tests
   '("test-unit-test.lisp"))
