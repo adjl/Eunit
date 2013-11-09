@@ -1,5 +1,3 @@
-(load "unit-test.lisp")
-
 (test-case 'test-case-unit-test
            '((test test-assert-equal-pass
                    ((assert-equal t t)
