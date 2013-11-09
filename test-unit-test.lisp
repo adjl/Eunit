@@ -1,7 +1,4 @@
 (test-case 'test-case-unit-test
-           '((test test-assert-equal-pass
+           '((test test-assert-equal
                    ((assert-equal t t)
-                    (assert-equal nil nil)))
-             (test test-assert-equal-fail
-                   ((assert-equal t nil)
-                    (assert-equal nil t)))))
+                    (assert-equal nil nil)))))
