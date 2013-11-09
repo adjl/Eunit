@@ -1,9 +1,11 @@
 #!/u/u1/masrjb/bin/euscheme -fq
 
+(load "unit-test.lisp")
+
 (defun run-tests (tests)
-  (if (not (null tests))
-    (and (load (car tests))
-         (run-tests (cdr tests)))))
+  (cond ((not (null tests)) (load (car tests))
+                            (if (not (null (cdr tests))) (newline))
+                            (run-tests (cdr tests)))))
 
 (run-tests
   '("test-unit-test.lisp"))
