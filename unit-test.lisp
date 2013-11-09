@@ -2,8 +2,9 @@
   (labels
     ((test-case-inner (tests tests-passed tests-failed)
        (cond ((null tests)
-              (format t "~d tests run: ~d passed, ~d failed~%"
-                      (+ tests-passed tests-failed) tests-passed tests-failed))
+              (format t "(~a) ~d tests run: ~d passed, ~d failed~%"
+                      test-case-name (+ tests-passed tests-failed)
+                      tests-passed tests-failed))
              (t (let* ((test-name (cadar tests))
                        (assertions (caddar tests))
                        (test-passedp (test test-case-name test-name assertions))
@@ -20,9 +21,9 @@
              (t (let* ((assertion (caar assertions))
                        (argument1 (cadar assertions))
                        (argument2 (caddar assertions))
-                       (assertion-passedp
-                         ((assert assertion) test-case-name test-name
-                                             argument1 argument2))
+                       (assertion-passedp ((assert assertion)
+                                           test-case-name test-name
+                                           argument1 argument2))
                        (passedp (and passedp assertion-passedp)))
                   (test-inner (cdr assertions) passedp))))))
     (test-inner assertions t)))
@@ -32,5 +33,5 @@
 
 (defun assert-equal (test-case-name test-name param1 param2)
   (let ((passedp (equal param1 param2)))
-    (not (if (not passedp) (format t "~a :: ~a : ~a != ~a~%"
+    (not (if (not passedp) (format t "(~a) ~a: ~a != ~a~%"
                                    test-case-name test-name param1 param2)))))
