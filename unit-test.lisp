@@ -33,10 +33,10 @@
                   (test-inner (cdr assertions) passedp))))))
     (test-inner assertions t)))
 
+(defun assert (assertion)
+  (cond ((eq assertion 'assert-equal) assert-equal)))
+
 (defun assert-equal (test-case-name test-name param1 param2)
   (let ((passedp (equal param1 param2)))
     (not (if (not passedp) (format t "(~a) ~a: ~a != ~a~%"
                                    test-case-name test-name param1 param2)))))
-
-(defun assert (assertion)
-  (cond ((eq assertion 'assert-equal) assert-equal)))
