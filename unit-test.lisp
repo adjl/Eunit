@@ -24,8 +24,8 @@
     ((test-inner (assertions passedp)
        (cond ((null assertions) passedp)
              (t (let* ((assertion (caar assertions))
-                       (argument1 (cadar assertions))
-                       (argument2 (caddar assertions))
+                       (argument1 (eval (cadar assertions)))
+                       (argument2 (eval (caddar assertions)))
                        (assertion-passedp ((assert assertion)
                                            test-case-name test-name
                                            argument1 argument2))
