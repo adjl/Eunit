@@ -23,12 +23,11 @@
   (labels
     ((test-inner (assertions passedp)
        (cond ((null assertions) passedp)
-             (t (let* ((assertion (caar assertions))
+             (t (let* ((assertion (assert (caar assertions)))
                        (argument1 (eval (cadar assertions)))
                        (argument2 (eval (caddar assertions)))
-                       (assertion-passedp ((assert assertion)
-                                           test-case-name test-name
-                                           argument1 argument2))
+                       (assertion-passedp (assertion test-case-name test-name
+                                                     argument1 argument2))
                        (passedp (and passedp assertion-passedp)))
                   (test-inner (cdr assertions) passedp))))))
     (test-inner assertions t)))
